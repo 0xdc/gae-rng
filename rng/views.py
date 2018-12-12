@@ -5,11 +5,15 @@ from django.views.generic.base import TemplateView
 import random
 import functools
 
+from .models import UsedNumber
+
 _RINT = functools.partial(random.SystemRandom().randint, 0)
 _PRIME = 2 ** 127 - 1
 
 def random_number_generator(request):
-    return HttpResponse(_RINT(_PRIME))
+    rand = str(_RINT(_PRIME))
+    UsedNumber.objects.get_or_create(number=rand, defaults={'number': rand})
+    return HttpResponse(rand)
 
 class HomePageView(TemplateView):
     template_name = "rng/random.html"

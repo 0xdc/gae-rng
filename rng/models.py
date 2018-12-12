@@ -1,3 +1,8 @@
 from django.db import models
+from djangae import fields
 
-# Create your models here.
+class UsedNumber(models.Model):
+    number = fields.CharField()
+
+    def __str__(self):
+        return self.number
