@@ -3,6 +3,8 @@ threadsafe: true
 
 env_variables:
   ALLOWED_HOSTS: "*"
+inbound_services:
+- warmup
 handlers:
 - url: /_ah/(mapreduce|queue|warmup).*
   script: randnumgen.wsgi.application
