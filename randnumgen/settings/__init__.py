@@ -162,3 +162,6 @@ AUTH_USER_MODEL = "gauth_datastore.GaeDatastoreUser"
 AUTHENTICATION_BACKENDS = (
     'djangae.contrib.gauth_datastore.backends.AppEngineUserAPIBackend',
 )
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
