@@ -1,0 +1,8 @@
+{% extends 'rng/base.html' %}
+{% block container %}
+<ul>
+{% for used in usednumber_list %}
+<li><code>{{ used.number }}</code></li>
+{% endfor %}
+</ul>
+{% endblock %}
