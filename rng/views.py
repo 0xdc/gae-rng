@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from django.views import generic
 
 from .models import UsedNumber
 
@@ -17,3 +18,9 @@ class HomePageView(TemplateView):
         return context
 
 hpv = HomePageView.as_view()
+
+class UsedList(generic.ListView):
+    model = UsedNumber
+    template_name = "rng/list.html"
+
+usedindex = UsedList.as_view()
