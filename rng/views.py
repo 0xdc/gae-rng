@@ -7,7 +7,7 @@ from .models import UsedNumber
 
 def random_number_generator(request):
     rand = UsedNumber.new()
-    return HttpResponse(rand.number)
+    return HttpResponse(rand.number, content_type="text/plain")
 
 class HomePageView(TemplateView):
     template_name = "rng/random.html"
