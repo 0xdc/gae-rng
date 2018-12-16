@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}A random number{% endblock %}</title>
+	</head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	div {
+		text-align: center;
+		margin-top: 25%;
+	}
+	footer {
+		position: fixed;
+		font-size: 14px;
+		bottom: 14px;
+		right: 14px;
+	}
+	</style>
+	<body>
+		{% block container %}
+		<div>
+			<code>{{ random }}</code>
+		</div>
+		{% endblock %}
+		<footer>
+			<a href="{% url 'rng:hp' %}">home</a>
+			<a href="{% url 'rng:rng' %}">api</a>
+			<a href="{% url 'rng:index' %}">list</a>
+			<a href="https://github.com/0xdc/gae-rng" target="_blank">source</a>
+		</footer>
+		{% block script %}
+		{% endblock %}
+	</body>
+</html>

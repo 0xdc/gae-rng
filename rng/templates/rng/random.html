@@ -1,41 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>A random number</title>
-	</head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-	div {
-		text-align: center;
-		margin-top: 25%;
+{% extends 'rng/base.html' %}
+{% block container %}
+<div>
+	<code>{{ random }}</code>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+	code = document.querySelector("code");
+	loop = null;
+	fetch_and_update = function() {
+		clearInterval(loop);
+		fetch("{% url 'rng:rng' %}")
+			.then(a=>{return a.text()})
+			.then(b=>{code.innerText = b})
+		loop = setInterval(fetch_and_update, 30000);
 	}
-	footer {
-		position: fixed;
-		font-size: 14px;
-		bottom: 14px;
+	window.onload = function() {
+		loop = setInterval(fetch_and_update, 30000);
 	}
-	</style>
-	<body>
-		<div>
-			<code>{{ random }}</code>
-		</div>
-		<footer>
-			<a href="https://github.com/0xdc/gae-rng" target="_blank">source</a>
-			<a href="{% url 'rng:rng' %}">api</a>
-		</footer>
-		<script>
-			code = document.querySelector("code");
-			loop = null;
-			fetch_and_update = function() {
-				clearInterval(loop);
-				fetch("{% url 'rng:rng' %}")
-					.then(a=>{return a.text()})
-					.then(b=>{code.innerText = b})
-				loop = setInterval(fetch_and_update, 30000);
-			}
-			window.onload = function() {
-				loop = setInterval(fetch_and_update, 30000);
-			}
-		</script>
-	</body>
-</html>
+</script>
+{% endblock %}
